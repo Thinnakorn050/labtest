@@ -1,0 +1,89 @@
+1. main() และ runApp()
+// main() เป็นฟังก์ชันหลักที่ Flutter จะเรียกใช้งานเมื่อแอปเริ่มทำงาน
+// runApp() จะรับ widget ตัวแรกของแอปมาเป็น argument เพื่อเริ่มต้นแสดงผลแอปพลิเคชัน
+void main() {
+ runApp(MyApp());
+}
+
+// การทำงาน: 
+เมื่อแอปถูกเรียกใช้งาน จะเริ่มจากการเรียกฟังก์ชัน main() ซึ่งในที่นี้เรียกใช้ runApp() และส่ง widget ที่ชื่อ MyApp ไปเป็น widget หลักของแอป
+
+--------------------------------------------------------
+
+2. MaterialApp()
+// MaterialApp() เป็น widget ที่ใช้สำหรับการสร้างแอปพลิเคชันตามแนวทาง Material Design ของ Google ซึ่งช่วยให้ UI มีความเป็นมิตรต่อผู้ใช้งาน
+// เราสามารถกำหนดหน้าหลักของแอปด้วย home: ซึ่งจะเป็นหน้าที่แสดงเมื่อแอปถูกเปิดขึ้น
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(), // กำหนดหน้าหลักของแอป
+    );
+  }
+}
+
+// การทำงาน: 
+MaterialApp จะเป็นตัวช่วยในการกำหนดธีมและโครงสร้างของแอป
+// ในตัวอย่างนี้เราใช้ home: 
+เพื่อกำหนดว่าหน้าแรกของแอปจะเป็น widget MyHomePage()
+
+--------------------------------------------------------
+
+3. Scaffold()
+// Scaffold() เป็น widget ที่ใช้สร้างโครงสร้างพื้นฐานของหน้าจอ เช่น การมี AppBar, Body และ FloatingActionButton
+// ภายใน Scaffold สามารถใส่ widget ต่างๆ ได้ เช่น AppBar(), Body และปุ่มต่าง ๆ
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
+      ),
+      body: Center(
+        child: Text('Welcome to My Home Page!'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('Button Pressed');
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+// การทำงาน: 
+Scaffold() เป็น widget หลักในการสร้างหน้าแอปที่มีโครงสร้างพื้นฐาน เช่น
+// AppBar(): 
+สำหรับส่วนหัวของหน้า
+// Body: 
+กำหนดเนื้อหาหลักที่จะอยู่กลางหน้าจอ ในที่นี้คือข้อความ "Welcome to My Home Page!"
+FloatingActionButton(): ปุ่มลอยที่วางอยู่ที่มุมขวาล่าง และเมื่อกดปุ่มจะเรียกฟังก์ชัน onPressed ให้ทำงาน
+
+--------------------------------------------------------
+
+// การทำงานร่วมกัน:
+main() ทำหน้าที่เป็นฟังก์ชันเริ่มต้นที่เรียกใช้ runApp()
+runApp() เรียกใช้งาน MyApp ซึ่งในที่นี้เป็น MaterialApp ที่กำหนดหน้าหลักของแอปเป็น MyHomePage()
+ใน MyHomePage() จะใช้ Scaffold() เพื่อจัดวางองค์ประกอบต่าง ๆ เช่น AppBar, Body และ FloatingActionButton
+--------------------------------------------------------
+// เมื่อแอปทำงาน:
+AppBar จะแสดงส่วนหัวของหน้า
+Body จะแสดงข้อความที่อยู่ภายใน Center() ให้แสดงตรงกลางจอ
+FloatingActionButton จะแสดงปุ่มลอย และเมื่อกดจะพิมพ์ข้อความในคอนโซล
+--------------------------------------------------------
+// สรุป:
+main() เรียกใช้ runApp() เพื่อเริ่มต้นแอป
+MaterialApp() กำหนดหน้าหลักของแอปและธีม
+Scaffold() สร้างโครงสร้างหน้าจอที่ประกอบด้วย AppBar, Body และปุ่มต่าง ๆ
+--------------------------------------------------------
+
+
+
+

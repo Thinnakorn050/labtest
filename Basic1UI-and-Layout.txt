@@ -1,0 +1,211 @@
+1.Container
+Container(
+  width: 100,
+  height: 100,
+  color: Colors.blue,
+  child: Center(child: Text('Container')),
+)
+// การทำงาน: Container ใช้ในการห่อหุ้ม widget อื่นๆ เพื่อจัดการขนาด, สีพื้นหลัง, และจัดวางตำแหน่ง
+// การใช้งานร่วมกับคำสั่งอื่น: สามารถใช้งานร่วมกับ widget ต่างๆ ที่อยู่ภายในเช่น Text, Icon, หรือ Image ได้
+--------------------------------------------------------
+2.SizedBox
+SizedBox(
+  width: 150,
+  height: 50,
+  child: ElevatedButton(
+    onPressed: () {},
+    child: Text('Sized Button'),
+  ),
+)
+SizedBox
+// การทำงาน: ใช้กำหนดขนาดความกว้างและความสูงให้ widget
+// การใช้งานร่วมกับคำสั่งอื่น: ใช้ร่วมกับ Button, TextField หรือ widget อื่นๆ ที่ต้องการขนาดเฉพาะ
+--------------------------------------------------------
+
+3.Row, Column
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    Icon(Icons.home),
+    Icon(Icons.star),
+  ],
+)
+Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Text('Row Example'),
+    Text('Column Example'),
+  ],
+)
+// การทำงาน: ใช้ในการจัดเรียง widget หลายๆ ตัวในแนวนอน (Row) หรือแนวตั้ง (Column)
+// การใช้งานร่วมกับคำสั่งอื่น: ใช้ร่วมกับ widget ใดๆ เช่น Icon, Text, หรือแม้แต่ Container
+--------------------------------------------------------
+
+4.Stack
+Stack(
+  children: [
+    Container(width: 100, height: 100, color: Colors.red),
+    Container(width: 50, height: 50, color: Colors.blue),
+  ],
+)
+// การทำงาน: ใช้ซ้อน widget เหนือกัน โดย widget ที่ถูกวางทีหลังจะอยู่ด้านบน
+// การใช้งานร่วมกับคำสั่งอื่น: ใช้ร่วมกับ Container, Positioned เพื่อจัดวางตำแหน่ง
+--------------------------------------------------------
+
+5.Position
+Stack(
+  children: [
+    Positioned(
+      left: 10,
+      top: 10,
+      child: Container(width: 100, height: 100, color: Colors.green),
+    ),
+  ],
+)
+// การทำงาน: 
+ใช้จัดตำแหน่งของ widget ภายใน Stack
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ Stack และ widget อื่นๆ เพื่อจัดวางตำแหน่งที่เฉพาะเจาะจง
+--------------------------------------------------------
+6.Icon
+Icon(
+  Icons.favorite,
+  color: Colors.pink,
+  size: 50,
+)
+// การทำงาน: 
+ใช้แสดงไอคอนในแอปพลิเคชัน
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ Row, Column, Container หรือ widget อื่นๆ
+--------------------------------------------------------
+
+7.Color
+Container(
+  width: 100,
+  height: 100,
+  color: Colors.purple, // กำหนดสีให้ Container
+)
+// การทำงาน: 
+ใช้กำหนดสีให้ widget เช่น Container, Text
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ widget ที่สามารถกำหนดสีได้ เช่น Container, Icon
+--------------------------------------------------------
+
+8.EditTextField (TextField)
+TextField(
+  decoration: InputDecoration(
+    labelText: 'Enter your name',
+  ),
+)
+// การทำงาน: 
+ใช้สร้างช่องกรอกข้อความที่ผู้ใช้สามารถพิมพ์ข้อมูลได้
+// การใช้งานร่วมกับคำสั่งอื่น:
+ใช้ร่วมกับ Form, Column, หรือ Row ในการจัด layout
+--------------------------------------------------------
+
+9.Image
+Image.network(
+  'https://example.com/image.jpg',
+  width: 100,
+  height: 100,
+)
+// การทำงาน: 
+ใช้แสดงภาพจากไฟล์ภายในหรือ URL
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ Container, SizedBox เพื่อควบคุมขนาด
+--------------------------------------------------------
+
+10.SingleChildScrollView
+SingleChildScrollView(
+  child: Column(
+    children: List.generate(20, (index) => Text('Item $index')),
+  ),
+)
+// การทำงาน: 
+ทำให้เนื้อหาภายในเลื่อนได้หากเนื้อหายาวเกินพื้นที่แสดง
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ widget อย่าง Column, ListView เพื่อจัดการเนื้อหาที่ต้องการเลื่อน
+--------------------------------------------------------
+
+11. Button (ElevatedButton, TextButton)
+ElevatedButton(
+  onPressed: () {
+    print('Elevated Button Pressed');
+  },
+  child: Text('Press Me'),
+)
+
+TextButton(
+  onPressed: () {
+    print('Text Button Pressed');
+  },
+  child: Text('Click Here'),
+)
+// การทำงาน: 
+สร้างปุ่มที่ผู้ใช้สามารถกดเพื่อทำงานบางอย่าง
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ SizedBox, Container เพื่อจัดการขนาด หรือวางใน Row, Column
+--------------------------------------------------------
+
+12. Dialog
+showDialog(
+  context: context,
+  builder: (BuildContext context) {
+    return AlertDialog(
+      title: Text('Dialog Title'),
+      content: Text('This is a dialog.'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('OK'),
+        ),
+      ],
+    );
+  },
+)
+// การทำงาน: 
+ใช้แสดงหน้าต่างแจ้งเตือนหรือข้อความโต้ตอบผู้ใช้
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ Button หรือเหตุการณ์อื่นๆ เพื่อแสดง Dialog
+--------------------------------------------------------
+
+13. Event (onPressed, onScroll)
+ElevatedButton(
+  onPressed: () {
+    print('Button Clicked');
+  },
+  child: Text('Click Me'),
+)
+
+SingleChildScrollView(
+  child: Column(
+    children: List.generate(50, (index) => Text('Item $index')),
+  ),
+  // Scroll event can be managed by ScrollController
+)
+// การทำงาน: 
+ใช้จัดการเหตุการณ์ต่างๆ เช่น กดปุ่ม, เลื่อนเนื้อหา
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ widget ที่มีการโต้ตอบ เช่น ElevatedButton, SingleChildScrollView
+--------------------------------------------------------
+
+
+14. WebView
+import 'package:webview_flutter/webview_flutter.dart';
+
+WebView(
+  initialUrl: 'https://flutter.dev',
+  javascriptMode: JavascriptMode.unrestricted,
+)
+// การทำงาน: 
+ใช้ในการฝังหน้าเว็บลงในแอปพลิเคชัน
+// การใช้งานร่วมกับคำสั่งอื่น: 
+ใช้ร่วมกับ widget layout เช่น Container หรือใช้จัดการขนาดและตำแหน่ง
+--------------------------------------------------------
+
+// NOTE: 
+ทุก widget สามารถทำงานร่วมกันได้โดยการซ้อน widget อื่นๆ ข้างในกัน เช่น การใช้ Container ซ้อน Text หรือการใช้ Row ซ้อน Icon
+--------------------------------------------------------
+

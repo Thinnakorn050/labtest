@@ -1,0 +1,103 @@
+1. StatelessWidget
+// StatelessWidget คือ Widget ที่ไม่เปลี่ยนแปลงสถานะภายในตัวเองหลังจากที่มันถูกสร้างขึ้นแล้ว ซึ่งหมายความว่า UI ของมันจะไม่เปลี่ยนแปลงเมื่อมีการเปลี่ยนแปลงข้อมูลภายนอก
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('StatelessWidget Example'),
+        ),
+        body: Center(
+          child: Text('Hello, World!'),
+        ),
+      ),
+    );
+  }
+}
+
+// การทำงาน: 
+MyApp เป็น StatelessWidget ที่สร้าง UI ที่ไม่เปลี่ยนแปลง
+build เมธอดจะถูกเรียกเมื่อเริ่มต้นและจะไม่ถูกเรียกอีกหากไม่มีการเปลี่ยนแปลงข้อมูลภายใน Widget นี้
+
+--------------------------------------------------------
+
+
+2. StatefulWidget
+StatefulWidget คือ Widget ที่สามารถเปลี่ยนแปลงสถานะของมันเองได้ ซึ่งหมายความว่า UI ของมันสามารถอัปเดตได้เมื่อมีการเปลี่ยนแปลงสถานะ
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('StatefulWidget Example'),
+        ),
+        body: Counter(),
+      ),
+    );
+  }
+}
+
+class Counter extends StatefulWidget {
+  @override
+  _CounterState createState() => _CounterState();
+}
+
+class _CounterState extends State<Counter> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('You have pushed the button this many times:'),
+          Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          ElevatedButton(
+            onPressed: _incrementCounter,
+            child: Text('Increment'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// การทำงาน: 
+Counter เป็น StatefulWidget ที่สร้าง UI ที่สามารถเปลี่ยนแปลงได้
+_CounterState เป็นคลาสที่เก็บสถานะของ Counter (เช่น _counter)
+เมธอด setState ใช้เพื่ออัปเดตสถานะและทำให้ UI รีเฟรช
+--------------------------------------------------------
+// การใช้งานร่วมกับคำสั่งอื่น:
+StatelessWidget ใช้เมื่อคุณมี UI ที่ไม่ต้องการเปลี่ยนแปลงหลังจากการสร้าง
+StatefulWidget ใช้เมื่อ UI ของคุณต้องการการอัปเดตตามการเปลี่ยนแปลงของสถานะ
+--------------------------------------------------------
+
+// สรุป:
+StatelessWidget เหมาะกับการแสดงผลที่ไม่เปลี่ยนแปลง
+StatefulWidget เหมาะกับการแสดงผลที่ต้องเปลี่ยนแปลงตามสถานะหรือข้อมูลที่มีการเปลี่ยนแปลง
+--------------------------------------------------------

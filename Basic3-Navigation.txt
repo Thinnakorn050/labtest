@@ -1,0 +1,113 @@
+; การนำทางระหว่างหน้า (หรือ screen) ต่าง ๆ ใน Flutter สามารถทำได้โดยใช้ Navigator ซึ่งมีวิธีการใช้งานหลัก 2 แบบ คือ:
+
+; Navigator.push(): 
+สำหรับการนำทางไปยังหน้าใหม่
+; Navigator.pop(): 
+สำหรับการกลับไปยังหน้าก่อนหน้า
+
+1. หน้าแรก (HomePage)
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Page Navigation Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(),  // หน้าแรกที่แอปจะเปิด
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // ใช้ Navigator.push เพื่อนำทางไปยังหน้าใหม่ (SecondPage)
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SecondPage()),
+            );
+          },
+          child: Text('Go to Second Page'),
+        ),
+      ),
+    );
+  }
+}
+
+--------------------------------------------------------
+
+2. หน้าที่สอง (SecondPage)
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second Page'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // ใช้ Navigator.pop เพื่อกลับไปยังหน้าก่อนหน้า (HomePage)
+            Navigator.pop(context);
+          },
+          child: Text('Go Back to Home Page'),
+        ),
+      ),
+    );
+  }
+}
+--------------------------------------------------------
+
+; การทำงาน:
+; main(): 
+เริ่มต้นแอปและเรียกใช้ runApp() โดยส่ง widget MyApp() เป็น argument
+
+; MaterialApp(): 
+ทำหน้าที่เป็นแอปที่ออกแบบตามแนวทาง Material Design
+มี property ชื่อ home: ที่กำหนด widget หน้าแรก คือ HomePage()
+
+; HomePage(): 
+เป็นหน้าแรกที่แสดงผลเมื่อแอปเปิดขึ้น
+มีปุ่ม ElevatedButton ที่เมื่อถูกกดจะเรียกใช้ Navigator.push() เพื่อนำทางไปยัง SecondPage()
+
+; Navigator.push(): 
+ใช้เพื่อเปิดหน้าจอใหม่ โดยในที่นี้เป็น SecondPage()
+รับ parameter context เพื่อระบุหน้าจอปัจจุบัน และ MaterialPageRoute เพื่อสร้างเส้นทาง (route) ไปยังหน้าใหม่
+
+; SecondPage():
+เมื่อผู้ใช้มาถึงหน้า SecondPage() จะมีปุ่มอีกปุ่มหนึ่งที่ใช้ Navigator.pop() เพื่อกลับไปยังหน้าก่อนหน้า
+
+; Navigator.pop(): 
+เป็นคำสั่งที่ใช้เพื่อกลับไปยังหน้าก่อนหน้า โดยปิดหน้าปัจจุบัน (ในที่นี้คือ SecondPage()) และกลับไปยัง HomePage()
+
+
+; การทำงานร่วมกัน:
+Navigator.push() และ Navigator.pop() เป็นคำสั่งสำคัญที่ใช้ในการนำทางระหว่างหน้าต่าง ๆ ในแอป
+เมื่อผู้ใช้กดปุ่ม "Go to Second Page" ที่หน้าแรก HomePage():
+Navigator.push() จะนำผู้ใช้ไปยังหน้า SecondPage()
+เมื่อผู้ใช้กดปุ่ม "Go Back to Home Page" ที่หน้า SecondPage():
+Navigator.pop() จะนำผู้ใช้กลับไปยังหน้า HomePage()
+
+--------------------------------------------------------
+
+; สรุปการทำงาน:
+แอปเริ่มต้นที่ HomePage()
+กดปุ่มเพื่อใช้ Navigator.push() ไปยังหน้า SecondPage()
+เมื่ออยู่ที่ SecondPage() ผู้ใช้สามารถกดปุ่มเพื่อกลับไปยังหน้า HomePage() โดยใช้ Navigator.pop()
+การนำทางนี้ทำให้แอปสามารถเคลื่อนย้ายไปมาระหว่างหน้าจอต่างๆ ได้อย่างสะดวก
+
+--------------------------------------------------------
